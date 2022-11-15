@@ -12,15 +12,19 @@ namespace ProyectoN1.Clinica.Entidades
         {
             Id = 0;
             Nombre = "";
+            Numero = "";
         }
 
-        public Clinica(int id, string nombre)
+        public Clinica(int id, string numero, string nombre)
         {
             Id = id;
+            Numero = numero;
             Nombre = nombre;
         }
 
         public int Id { get; set; }
+
+        public string Numero { get; set; }
 
         public string Nombre { get; set; }    
     }

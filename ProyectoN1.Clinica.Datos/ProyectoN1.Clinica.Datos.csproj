@@ -43,5 +43,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProyectoN1.Clinica.Entidades\ProyectoN1.Clinica.Entidades.csproj">
+      <Project>{2bd64f9f-6152-4603-b7c4-7b3b9f3e88eb}</Project>
+      <Name>ProyectoN1.Clinica.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

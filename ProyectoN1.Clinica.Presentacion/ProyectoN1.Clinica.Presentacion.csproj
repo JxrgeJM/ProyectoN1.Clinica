@@ -120,7 +120,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClinicaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MedicoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,6 +168,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Clinica\" />
+    <Folder Include="Views\Medico\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -179,6 +183,16 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProyectoN1.Clinica.Entidades\ProyectoN1.Clinica.Entidades.csproj">
+      <Project>{2bd64f9f-6152-4603-b7c4-7b3b9f3e88eb}</Project>
+      <Name>ProyectoN1.Clinica.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProyectoN1.Clinica.LogicaNegocio\ProyectoN1.Clinica.LogicaNegocio.csproj">
+      <Project>{481cebdd-c1a3-49ce-b130-2271726e00f3}</Project>
+      <Name>ProyectoN1.Clinica.LogicaNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -13,8 +13,31 @@ namespace ProyectoN1.Clinica.Presentacion.Controllers
         // GET: Clinica
         public ActionResult Index()
         {
-
-            return View();
+            List<Entidades.Clinica> vLista = AdministradorClinica.Listar();
+            return View(vLista);
         }
+
+        public ActionResult Edit(int pId)
+        {
+            Entidades.Clinica vClinica = AdministradorClinica.Listar().Where(p => p.Id == pId).FirstOrDefault();
+            return View(vClinica);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Entidades.Clinica pModelo)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                    AdministradorClinica.Modificar(pModelo);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
     }
 }

@@ -10,6 +10,11 @@ namespace ProyectoN1.Clinica.LogicaNegocio
 {
     public class AdministradorMedico
     {
+        public static List<Medico> Listar()
+        {
+            return MedicoDAL.Listar();
+        }
+
         public static void Agregar(Medico pMedico)
         {
             MedicoDAL.Agregar(pMedico);

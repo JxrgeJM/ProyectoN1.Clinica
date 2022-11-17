@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ProyectoN1.Clinica.Entidades.Reportes.RepIngresos>
+
+@{
+    ViewBag.Title = "ReporteDeIngreso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Informe de ingresos por clínica</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Clinica.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clinica.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadCitas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingresos)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clinica.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clinica.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadCitas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ingresos)
+        </td>
+
+    </tr>
+}
+
+</table>

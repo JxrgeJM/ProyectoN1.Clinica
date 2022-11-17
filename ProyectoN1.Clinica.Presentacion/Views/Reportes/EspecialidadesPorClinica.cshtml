@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ProyectoN1.Clinica.Entidades.TipoEspecialidad>
+
+@{
+    ViewBag.Title = "EspecialidadesPorClinica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Informe de especialidades por clínica</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+    </tr>
+}
+
+</table>

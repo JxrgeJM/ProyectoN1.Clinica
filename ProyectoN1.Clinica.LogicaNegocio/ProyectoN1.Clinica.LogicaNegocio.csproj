@@ -45,6 +45,7 @@
     <Compile Include="AdministradorClinica.cs" />
     <Compile Include="AdministradorMedico.cs" />
     <Compile Include="AdministradorPaciente.cs" />
+    <Compile Include="AdministradorReportes.cs" />
     <Compile Include="AdministradorTipoEspecialidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoN1.Clinica.Entidades
 {
@@ -20,8 +21,11 @@ namespace ProyectoN1.Clinica.Entidades
             Descripcion = descripcion;
         }
 
+        [Required(ErrorMessage = "Requerido")]
         public int Id { get; set; }
 
+        [Display(Name = "Especialidad")]
+        [Required(ErrorMessage = "Requerido")]
         public string Descripcion { get; set; }
     }
 }

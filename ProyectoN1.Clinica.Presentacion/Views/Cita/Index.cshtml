@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProyectoN1.Clinica.Entidades.Cita>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Citas</h2>
+
+<p class="text-right">
+    @Html.ActionLink("Nueva", "AgregarCita", new { pIdClinica = 1 }, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Paciente.Identificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Especialidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Medico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paciente.Identificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paciente.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Especialidad.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medico.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora)
+        </td>
+    </tr>
+}
+
+</table>

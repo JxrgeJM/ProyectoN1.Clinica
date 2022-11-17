@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ProyectoN1.Clinica.Entidades.Medico>
+
+@{
+    ViewBag.Title = "MedicosQueAtendieron";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Informe médicos que atendieron</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Especialidad)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Especialidad.Descripcion)
+        </td>
+    </tr>
+}
+</table>

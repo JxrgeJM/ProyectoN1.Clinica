@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ProyectoN1.Clinica.Entidades.Reportes.RepAtencionMedico>
+
+@{
+    ViewBag.Title = "Estadisticas1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Informe de atención por médico</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Medico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadCitas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PorcentajeAtencion)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medico.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadCitas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PorcentajeAtencion)
+        </td>
+    </tr>
+}
+
+</table>

@@ -10,6 +10,11 @@ namespace ProyectoN1.Clinica.LogicaNegocio
 {
     public class AdministradorCita
     {
+        public static List<Cita> Listar(int pIdClinica, DateTime pFecha)
+        {
+            return CitaDAL.Listar(pIdClinica, pFecha);
+        }
+
         public static void Agregar(Cita pCita)
         {
             CitaDAL.Agregar(pCita);

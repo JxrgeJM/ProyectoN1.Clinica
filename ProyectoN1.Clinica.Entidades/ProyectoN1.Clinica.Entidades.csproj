@@ -49,7 +49,11 @@
     <Compile Include="Medico.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\RepAtencionEspecialidad.cs" />
+    <Compile Include="Reportes\RepAtencionMedico.cs" />
+    <Compile Include="Reportes\RepIngresos.cs" />
     <Compile Include="TipoEspecialidad.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

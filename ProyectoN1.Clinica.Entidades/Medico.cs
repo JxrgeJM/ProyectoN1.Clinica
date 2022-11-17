@@ -33,5 +33,11 @@ namespace ProyectoN1.Clinica.Entidades
 
         [Required(ErrorMessage = "Requerido")]
         public TipoEspecialidad Especialidad { get; set; }
+
+        public string NombreEspecialidad
+        {
+            get { return $"{Nombre} ({Especialidad.Descripcion})"; }
+        }
+
     }
 }

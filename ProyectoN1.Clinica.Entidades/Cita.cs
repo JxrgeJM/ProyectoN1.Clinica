@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoN1.Clinica.Entidades
 {
@@ -17,9 +18,10 @@ namespace ProyectoN1.Clinica.Entidades
             Medico = new Medico();
             Fecha = new DateTime();
             Hora = 0;
+            Monto = 0;
         }
 
-        public Cita(int id, Clinica clinica, TipoEspecialidad especialidad, Paciente paciente, Medico medico, DateTime fecha, int hora)
+        public Cita(int id, Clinica clinica, TipoEspecialidad especialidad, Paciente paciente, Medico medico, DateTime fecha, int hora, decimal monto)
         {
             Id = id;
             Clinica = clinica;
@@ -28,6 +30,7 @@ namespace ProyectoN1.Clinica.Entidades
             Medico = medico;
             Fecha = fecha;
             Hora = hora;
+            Monto = monto;
         }
 
         public int Id { get; set; }
@@ -38,10 +41,16 @@ namespace ProyectoN1.Clinica.Entidades
 
         public Paciente Paciente { get; set; }
 
+        [Display(Name = "Médico")]
         public Medico Medico { get; set; }
 
+        [Required(ErrorMessage = "Requerido")]
         public DateTime Fecha { get; set; }
 
+        [Required(ErrorMessage = "Requerido")]
         public int Hora { get; set; }
+
+        [Required(ErrorMessage = "Requerido")]
+        public decimal Monto { get; set; }
     }
 }

@@ -120,9 +120,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CitaController.cs" />
     <Compile Include="Controllers\ClinicaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MedicoController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -170,6 +172,15 @@
     <Content Include="Views\Clinica\AgregarEspecialidad.cshtml" />
     <Content Include="Views\Clinica\Medicos.cshtml" />
     <Content Include="Views\Clinica\AgregarMedico.cshtml" />
+    <Content Include="Views\Cita\Index.cshtml" />
+    <Content Include="Views\Cita\AgregarCita.cshtml" />
+    <Content Include="Views\Reportes\PacientesAtendidos.cshtml" />
+    <Content Include="Views\Reportes\MedicosQueAtendieron.cshtml" />
+    <Content Include="Views\Reportes\CitasAtendidas.cshtml" />
+    <Content Include="Views\Reportes\EspecialidadesPorClinica.cshtml" />
+    <Content Include="Views\Reportes\ReporteDeIngreso.cshtml" />
+    <Content Include="Views\Reportes\Estadisticas1.cshtml" />
+    <Content Include="Views\Reportes\Estadisticas2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

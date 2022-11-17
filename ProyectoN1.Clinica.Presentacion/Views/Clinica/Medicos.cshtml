@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ProyectoN1.Clinica.Entidades.Medico>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Medicos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de Medicos</h2>
+<h2>Médicos (@ViewBag.Clinica.Nombre)</h2>
 
 <p class="text-right">
-    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Nuevo", "AgregarMedico", new { pIdClinica = @ViewBag.Clinica.Id }, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -32,3 +32,7 @@
 }
 
 </table>
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>

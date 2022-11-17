@@ -20,19 +20,24 @@ namespace ProyectoN1.Clinica.LogicaNegocio
             ClinicaDAL.Modificar(pClinica);
         }
 
-        public static void AgregarEspecialidad(int pIdClinica, int pIdEspecialidad)
+        public static void AgregarEspecialidad(ClinicaEspecialidad pClinicaEspecialidad)
         {
-            ClinicaDAL.AgregarEspecialidad(pIdClinica, pIdEspecialidad);
+            ClinicaDAL.AgregarEspecialidad(pClinicaEspecialidad);
         }
 
-        public static void BorrarEspecialidad(int pIdClinica, int pIdEspecialidad)
+        public static void BorrarEspecialidad(ClinicaEspecialidad pClinicaEspecialidad)
         {
-            ClinicaDAL.BorrarEspecialidad(pIdClinica, pIdEspecialidad);
+            ClinicaDAL.BorrarEspecialidad(pClinicaEspecialidad);
         }
 
         public static List<TipoEspecialidad> ListarEspecialidad(int pIdClinica)
         {
             return ClinicaDAL.ListarEspecialidad(pIdClinica);
+        }
+
+        public static void AgregarMedicoEspecialista(ClinicaMedico pClinicaMedico)
+        {
+            ClinicaDAL.AgregarMedicoEspecialista(pClinicaMedico);
         }
     }
 }

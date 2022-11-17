@@ -23,6 +23,7 @@ namespace ProyectoN1.Clinica.Entidades
             Especialidad = especialidad;
         }
 
+        [Range(1, int.MaxValue, ErrorMessage = "Invalido")]
         [Display(Name = "Identificación")]
         [Required(ErrorMessage = "Requerido")] 
         public int Id { get; set; }

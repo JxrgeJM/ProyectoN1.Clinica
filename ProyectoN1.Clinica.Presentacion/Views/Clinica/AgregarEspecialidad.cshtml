@@ -1,0 +1,42 @@
+﻿@model ProyectoN1.Clinica.Entidades.ClinicaEspecialidad
+
+@{
+    ViewBag.Title = "AgregarEspecialidad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Agregar Especialidad</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.IdClinica)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Especialidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Especialidad.Id, new SelectList(ViewBag.Especialidades, "Id", "Descripcion", Model.Especialidad.Id), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Especialidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Especialidades", new { pIdClinica = Model.IdClinica })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

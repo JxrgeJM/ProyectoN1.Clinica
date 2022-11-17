@@ -17,7 +17,7 @@ namespace ProyectoN1.Clinica.Datos
             vCmd.CommandType = CommandType.StoredProcedure;
             vCmd.Parameters.Clear();
             vCmd.Parameters.AddWithValue("@pId", pPaciente.Identificacion);
-            vCmd.Parameters.AddWithValue("@pNombre", pPaciente.Nombre);
+            vCmd.Parameters.AddWithValue("@pNombre", pPaciente.Nombre.ToUpper());
             vCmd.Parameters.AddWithValue("@pTelefono", pPaciente.Telefono);
             try
             {

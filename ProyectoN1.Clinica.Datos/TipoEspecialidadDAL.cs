@@ -21,7 +21,7 @@ namespace ProyectoN1.Clinica.Datos
                 SqlDataReader vRd = vCmd.ExecuteReader();
                 List<TipoEspecialidad> vDatos = new List<TipoEspecialidad>();
                 while (vRd.Read())
-                    vDatos.Add(new TipoEspecialidad(vRd.GetInt32(0), vRd.GetString(1)));
+                    vDatos.Add(new TipoEspecialidad(vRd.GetInt32(0), vRd.GetString(1).ToUpper()));
                 vRd.Close();
                 return vDatos;
             }

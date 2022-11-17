@@ -41,8 +41,8 @@ namespace ProyectoN1.Clinica.Datos
             vCmd.CommandType = CommandType.StoredProcedure;
             vCmd.Parameters.Clear();
             vCmd.Parameters.AddWithValue("@pId", pClinica.Id);
-            vCmd.Parameters.AddWithValue("@pNumero", pClinica.Numero);
-            vCmd.Parameters.AddWithValue("@pNombre", pClinica.Nombre);
+            vCmd.Parameters.AddWithValue("@pNumero", pClinica.Numero.ToUpper());
+            vCmd.Parameters.AddWithValue("@pNombre", pClinica.Nombre.ToUpper());
             try
             {
                 Conexion.getCnxClinica().Open();
@@ -58,13 +58,13 @@ namespace ProyectoN1.Clinica.Datos
             }
         }
 
-        public static void AgregarEspecialidad(int pIdClinica, int pIdEspecialidad)
+        public static void AgregarEspecialidad(ClinicaEspecialidad pClinicaEspecialidad)
         {
             SqlCommand vCmd = new SqlCommand("SP_AgregarClinicaEspecialidad", Conexion.getCnxClinica());
             vCmd.CommandType = CommandType.StoredProcedure;
             vCmd.Parameters.Clear();
-            vCmd.Parameters.AddWithValue("@pClinica", pIdClinica);
-            vCmd.Parameters.AddWithValue("@pEspecialidad", pIdEspecialidad);
+            vCmd.Parameters.AddWithValue("@pClinica", pClinicaEspecialidad.IdClinica);
+            vCmd.Parameters.AddWithValue("@pEspecialidad", pClinicaEspecialidad.Especialidad.Id);
             try
             {
                 Conexion.getCnxClinica().Open();
@@ -80,13 +80,13 @@ namespace ProyectoN1.Clinica.Datos
             }
         }
 
-        public static void BorrarEspecialidad(int pIdClinica, int pIdEspecialidad)
+        public static void BorrarEspecialidad(ClinicaEspecialidad pClinicaEspecialidad)
         {
             SqlCommand vCmd = new SqlCommand("SP_BorrarClinicaEspecialidad", Conexion.getCnxClinica());
             vCmd.CommandType = CommandType.StoredProcedure;
             vCmd.Parameters.Clear();
-            vCmd.Parameters.AddWithValue("@pClinica", pIdClinica);
-            vCmd.Parameters.AddWithValue("@pEspecialidad", pIdEspecialidad);
+            vCmd.Parameters.AddWithValue("@pClinica", pClinicaEspecialidad.IdClinica);
+            vCmd.Parameters.AddWithValue("@pEspecialidad", pClinicaEspecialidad.Especialidad.Id);
             try
             {
                 Conexion.getCnxClinica().Open();
@@ -119,6 +119,28 @@ namespace ProyectoN1.Clinica.Datos
                 return vDatos;
             }
             catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                Conexion.getCnxClinica().Close();
+            }
+        }
+
+        public static void AgregarMedicoEspecialista(ClinicaMedico pClinicaMedico)
+        {
+            SqlCommand vCmd = new SqlCommand("SP_AgregarClinicaMedico", Conexion.getCnxClinica());
+            vCmd.CommandType = CommandType.StoredProcedure;
+            vCmd.Parameters.Clear();
+            vCmd.Parameters.AddWithValue("@pIdClinica", pClinicaMedico.IdClinica);
+            vCmd.Parameters.AddWithValue("@pIdMedico", pClinicaMedico.Medico.Id);
+            try
+            {
+                Conexion.getCnxClinica().Open();
+                vCmd.ExecuteNonQuery();
+            }
+            catch (Exception)   
             {
                 throw;
             }

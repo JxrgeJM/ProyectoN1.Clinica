@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de Clinicas</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -30,7 +28,9 @@
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { pId=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { pId = item.Id }) | 
+            @Html.ActionLink("Especialidades", "Especialidades", new { pIdClinica = item.Id }) | 
+            @Html.ActionLink("Médicos", "Medicos", new { pIdClinica = item.Id }) 
         </td>
     </tr>
 }

@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Cita.cs" />
     <Compile Include="Clinica.cs" />
+    <Compile Include="ClinicaEspecialidad.cs" />
+    <Compile Include="ClinicaMedico.cs" />
     <Compile Include="Medico.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

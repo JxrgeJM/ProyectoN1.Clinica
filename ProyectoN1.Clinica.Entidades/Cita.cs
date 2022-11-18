@@ -45,6 +45,8 @@ namespace ProyectoN1.Clinica.Entidades
         public Medico Medico { get; set; }
 
         [Required(ErrorMessage = "Requerido")]
+        [DataType(DataType.Date, ErrorMessage = "Solo fecha")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Fecha { get; set; }
 
         [Required(ErrorMessage = "Requerido")]

@@ -19,24 +19,28 @@ namespace ProyectoN1.Clinica.Presentacion.Controllers
 
         public ActionResult PacientesAtendidos(int pIdClinica = 1)
         {
+            ViewBag.Clinicas = AdministradorClinica.Listar();
             List<Paciente> vModelo = AdministradorReportes.ListarPacientesAtendidos(pIdClinica);
             return View(vModelo);
         }
 
         public ActionResult MedicosQueAtendieron(int pIdClinica = 1)
         {
+            ViewBag.Clinicas = AdministradorClinica.Listar();
             List<Medico> vModelo = AdministradorReportes.ListarMedicosQueAtienden(pIdClinica);
             return View(vModelo);
         }
 
         public ActionResult CitasAtendidas(int pIdClinica = 1)
         {
+            ViewBag.Clinicas = AdministradorClinica.Listar();
             List<Cita> vModelo = AdministradorReportes.ListarCitasAtendidas(pIdClinica);
             return View(vModelo);
         }
 
         public ActionResult EspecialidadesPorClinica(int pIdClinica = 1)
         {
+            ViewBag.Clinicas = AdministradorClinica.Listar();
             List<TipoEspecialidad> vModelo = AdministradorReportes.ListarEspecialidadesClinica(pIdClinica);
             return View(vModelo);
         }

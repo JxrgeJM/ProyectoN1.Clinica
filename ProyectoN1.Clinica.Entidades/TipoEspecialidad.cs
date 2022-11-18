@@ -25,7 +25,6 @@ namespace ProyectoN1.Clinica.Entidades
         public int Id { get; set; }
 
         [Display(Name = "Especialidad")]
-        [Required(ErrorMessage = "Requerido")]
         public string Descripcion { get; set; }
     }
 }

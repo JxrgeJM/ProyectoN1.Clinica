@@ -7,6 +7,11 @@
 
 <h2>Informe médicos que atendieron</h2>
 
+<div class="m">
+    <label>Clinica: </label>
+    @Html.DropDownList("DDClinicas", new SelectList(ViewBag.Clinicas, "Id", "Nombre"), null, new { @class = "form-control" })
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -20,17 +25,34 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Especialidad.Descripcion)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialidad.Descripcion)
+            </td>
+        </tr>
+    }
 </table>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(function(){
+                $("#DDClinicas").change(function () {
+                    var vIdClinica = $("#DDClinicas").val();
+                    window.location.href = '@Url.Action("MedicosQueAtendieron", "Reportes")?pIdClinica=' + vIdClinica;
+                });
+            });
+
+        });
+    </script>
+}

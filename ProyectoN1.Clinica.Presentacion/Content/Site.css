@@ -29,3 +29,15 @@ textarea {
     background-color: #003868;
     border-color: #003868
 }
+
+.m{
+    margin: 15px 0px;
+}
+
+.mt{
+    margin-top: 15px;
+}
+
+.mb {
+    margin-bottom: 15px;
+}

@@ -39,12 +39,17 @@ namespace ProyectoN1.Clinica.Entidades
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "Requerido")]
+        [Display(Name = "N° Serie")]
         public string Serie { get; set; }
 
         [Required(ErrorMessage = "Requerido")]
+        [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
 
         [Required(ErrorMessage = "Requerido")]
+        [DataType(DataType.Date, ErrorMessage = "Solo fecha")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)] 
+        [Display(Name = "Fecha de compra")]
         public DateTime FechaCompra { get; set; }
 
         public TipoEspecialidad Especialidad { get; set; }

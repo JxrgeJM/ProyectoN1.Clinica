@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using ProyectoN1.Clinica.Entidades;
 using ProyectoN1.Clinica.Entidades.Reportes;
 using ProyectoN1.Clinica.LogicaNegocio;
@@ -63,5 +65,79 @@ namespace ProyectoN1.Clinica.Presentacion.Controllers
             return View(vModelo);
         }
 
+
+        #region ArchivosJSON
+
+        public FileStreamResult PacientesAtendidosJSON(int pIdClinica = 1)
+        {
+            List<Paciente> vModelo = AdministradorReportes.ListarPacientesAtendidos(pIdClinica);
+            var vJSON = JsonConvert.SerializeObject(vModelo);
+            var fileName = "PacientesAtendidos.json";
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(vJSON);
+            var content = new System.IO.MemoryStream(bytes);
+            return File(content, "application/json", fileName);
+        }
+
+        public FileStreamResult MedicosQueAtendieronJSON(int pIdClinica = 1)
+        {
+            List<Medico> vModelo = AdministradorReportes.ListarMedicosQueAtienden(pIdClinica);
+            var vJSON = JsonConvert.SerializeObject(vModelo);
+            var fileName = "MedicosQueAtendieron.json";
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(vJSON);
+            var content = new System.IO.MemoryStream(bytes);
+            return File(content, "application/json", fileName);
+        }
+
+        public FileStreamResult CitasAtendidasJSON(int pIdClinica = 1)
+        {
+            List<Cita> vModelo = AdministradorReportes.ListarCitasAtendidas(pIdClinica);
+            var vJSON = JsonConvert.SerializeObject(vModelo);
+            var fileName = "CitasAtendidas.json";
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(vJSON);
+            var content = new System.IO.MemoryStream(bytes);
+            return File(content, "application/json", fileName);
+        }
+
+        public FileStreamResult EspecialidadesPorClinicaJSON(int pIdClinica = 1)
+        {
+            List<TipoEspecialidad> vModelo = AdministradorReportes.ListarEspecialidadesClinica(pIdClinica);
+            var vJSON = JsonConvert.SerializeObject(vModelo);
+            var fileName = "EspecialidadesPorClinica.json";
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(vJSON);
+            var content = new System.IO.MemoryStream(bytes);
+            return File(content, "application/json", fileName);
+        }
+
+        public FileStreamResult ReporteDeIngresoJSON()
+        {
+            List<RepIngresos> vModelo = AdministradorReportes.ListarClinicasIngreso();
+            var vJSON = JsonConvert.SerializeObject(vModelo);
+            var fileName = "IngresoPorClinica.json";
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(vJSON);
+            var content = new System.IO.MemoryStream(bytes);
+            return File(content, "application/json", fileName);
+        }
+
+        public FileStreamResult Estadisticas1JSON()
+        {
+            List<RepAtencionMedico> vModelo = AdministradorReportes.ListarAtencionMedico();
+            var vJSON = JsonConvert.SerializeObject(vModelo);
+            var fileName = "AtencionPorMedico.json";
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(vJSON);
+            var content = new System.IO.MemoryStream(bytes);
+            return File(content, "application/json", fileName);
+        }
+
+        public FileStreamResult Estadisticas2JSON()
+        {
+            List<RepAtencionEspecialidad> vModelo = AdministradorReportes.ListarAtencionEspecialidad();
+            var vJSON = JsonConvert.SerializeObject(vModelo);
+            var fileName = "AtencionPorEspecialidad.json";
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(vJSON);
+            var content = new System.IO.MemoryStream(bytes);
+            return File(content, "application/json", fileName);
+        }
+
+        #endregion
     }
 }

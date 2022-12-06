@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CitaController.cs" />
     <Compile Include="Controllers\ClinicaController.cs" />
+    <Compile Include="Controllers\EquipoMedicoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MedicoController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -181,6 +182,8 @@
     <Content Include="Views\Reportes\ReporteDeIngreso.cshtml" />
     <Content Include="Views\Reportes\Estadisticas1.cshtml" />
     <Content Include="Views\Reportes\Estadisticas2.cshtml" />
+    <Content Include="Views\EquipoMedico\Index.cshtml" />
+    <Content Include="Views\EquipoMedico\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

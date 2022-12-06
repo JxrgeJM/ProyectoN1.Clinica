@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AdministradorCita.cs" />
     <Compile Include="AdministradorClinica.cs" />
+    <Compile Include="AdministradorEquipoMedico.cs" />
     <Compile Include="AdministradorMedico.cs" />
     <Compile Include="AdministradorPaciente.cs" />
     <Compile Include="AdministradorReportes.cs" />

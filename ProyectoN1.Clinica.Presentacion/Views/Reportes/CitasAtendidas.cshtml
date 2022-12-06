@@ -7,9 +7,16 @@
 
 <h2>Informe de citas atendidas</h2>
 
-<div class="m">
-    <label>Clinica: </label>
-    @Html.DropDownList("DDClinicas", new SelectList(ViewBag.Clinicas, "Id", "Nombre"), null, new { @class = "form-control" })
+<div class="row mt mb">
+    <div class="col-sm-1">
+        <label>Clinica: </label>
+    </div>
+    <div class="col-sm-3">
+        @Html.DropDownList("DDClinicas", new SelectList(ViewBag.Clinicas, "Id", "Nombre"), null, new { @class = "form-control" })
+    </div>
+    <div class="col-sm-2">
+        @Html.ActionLink("Descargar JSON", "CitasAtendidasJSON", null, new { Id = "BtnDescargar", @class = "btn btn-primary" })
+    </div>
 </div>
 
 <table class="table">
@@ -58,6 +65,13 @@
                     var vIdClinica = $("#DDClinicas").val();
                     window.location.href = '@Url.Action("CitasAtendidas", "Reportes")?pIdClinica=' + vIdClinica;
                 });
+            });
+
+
+            $('#BtnDescargar').click(function () {
+                var vIdClinica = $('#DDClinicas').val();
+                var path = '@Url.Content("~/Reportes/CitasAtendidasJSON")?pIdClinica=' + vIdClinica;
+                $(this).attr("href", path);
             });
 
         });

@@ -45,6 +45,7 @@
     <Compile Include="CitaDAL.cs" />
     <Compile Include="ClinicaDAL.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="EquipoMedicoDAL.cs" />
     <Compile Include="MedicoDAL.cs" />
     <Compile Include="PacienteDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

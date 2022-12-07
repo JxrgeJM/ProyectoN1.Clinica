@@ -28,7 +28,12 @@
         <th>
             @Html.DisplayNameFor(model => model.FechaCompra)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clinica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Especialidad)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -49,9 +54,10 @@
             @Html.DisplayFor(modelItem => item.FechaCompra)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.Clinica.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Especialidad.Descripcion)
         </td>
     </tr>
 }

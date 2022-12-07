@@ -20,10 +20,13 @@ namespace ProyectoN1.Clinica.Presentacion.Controllers
 
         public ActionResult AgregarCita(int pIdClinica)
         {
-            ViewBag.Especialidades = AdministradorTipoEspecialidad.Listar();
-            ViewBag.Medicos = AdministradorMedico.ListarPorClinica(pIdClinica);
-            Entidades.Clinica vClinica = AdministradorClinica.Listar().Where(p => p.Id == pIdClinica).FirstOrDefault();
-            Cita vCita = new Cita() { Clinica = vClinica, Fecha = DateTime.Now};
+            List<Entidades.Clinica> vClinicas = AdministradorClinica.Listar();
+            List<TipoEspecialidad> vEspecialidades = AdministradorClinica.ListarEspecialidad(pIdClinica);
+            ViewBag.Medicos = AdministradorMedico.ListarPorClinica(pIdClinica).Where(p => p.Especialidad.Id == vEspecialidades.FirstOrDefault().Id);
+            ViewBag.Especialidades = vEspecialidades;
+            ViewBag.Clinicas = vClinicas;
+
+            Cita vCita = new Cita() { Clinica = vClinicas.Where(p => p.Id == pIdClinica).FirstOrDefault(), Fecha = DateTime.Now};
             return View(vCita);
         }
 
@@ -34,18 +37,57 @@ namespace ProyectoN1.Clinica.Presentacion.Controllers
             {
                 AdministradorPaciente.Agregar(pModelo.Paciente);
             }
-            catch (Exception)
+            catch (Exception){}
+
+            string vMensaje = "";
+            if ((pModelo.Hora >= 800 && pModelo.Hora < 1200) || (pModelo.Hora >= 1330 && pModelo.Hora < 1700))
             {
-            }
-            if ((pModelo.Hora>=800 && pModelo.Hora < 1200) || (pModelo.Hora >= 1330 && pModelo.Hora < 1700))
-            {
-                AdministradorCita.Agregar(pModelo);
+                if (AdministradorCita.CitaDisponibleConsultorio(pModelo))
+                {
+                    if (AdministradorCita.CitaDisponible(pModelo))
+                        AdministradorCita.Agregar(pModelo);
+                    else
+                        vMensaje = "El especialista no tiene espacio a la hora seleccionada.";
+                }
+                else
+                    vMensaje = "Consultorio no disponible en la fecha y hora indicada.";
             }
             else
             {
-                //tirar advertencia
+                vMensaje = "No se puede agendar en horario de almuerzo o no laboral.";
             }
+
+            if (vMensaje != "")
+            {
+                ViewBag.Message = vMensaje;
+                ViewBag.Clinicas = AdministradorClinica.Listar();
+                ViewBag.Especialidades = AdministradorClinica.ListarEspecialidad(pModelo.Clinica.Id);
+                ViewBag.Medicos = AdministradorMedico.ListarPorClinica(pModelo.Clinica.Id).Where(p => p.Especialidad.Id == pModelo.Especialidad.Id);
+                return View(pModelo);
+            }
+
             return RedirectToAction("Index", new { pIdClinica = pModelo.Clinica.Id });
+        }
+
+
+        public ActionResult GetEspecialidad(int pIdClinica)
+        {
+            if (pIdClinica != 0)
+            {
+                List<TipoEspecialidad> vEspecialidades = AdministradorClinica.ListarEspecialidad(pIdClinica);
+                return Json(vEspecialidades, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Success = "false" });
+        }
+
+        public ActionResult GetMedicos(int pIdClinica, int pIdEspecialidad)
+        {
+            if (pIdClinica != 0)
+            {
+                List<Medico> vMedicos = AdministradorMedico.ListarPorClinica(pIdClinica).Where(p => p.Especialidad.Id == pIdEspecialidad).ToList();
+                return Json(vMedicos, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Success = "false" });
         }
 
     }

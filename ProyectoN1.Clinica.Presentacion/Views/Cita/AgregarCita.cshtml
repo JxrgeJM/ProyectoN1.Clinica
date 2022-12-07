@@ -8,85 +8,100 @@
 <h2>Agregar Cita</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    @Html.HiddenFor(model => model.Clinica.Id)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Paciente.Identificacion, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Paciente.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Paciente.Identificacion, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Clinica.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Paciente.Identificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Paciente.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Paciente.Identificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Paciente.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Paciente.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Paciente.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Paciente.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Paciente.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Paciente.Telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Clinica, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Clinica.Id, new SelectList(ViewBag.Clinicas, "Id", "Nombre", Model.Medico.Id), new { Id = "DropClinica", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Clinica.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Especialidad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Especialidad.Id, new SelectList(ViewBag.Especialidades, "Id", "Descripcion", Model.Especialidad.Id), new { Id = "DropEspecialidad", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Especialidad.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Medico, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Medico.Id, new SelectList(ViewBag.Medicos, "Id", "Nombre", Model.Medico.Id), new { Id = "DropMedico", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Medico.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Hora, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Hora, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar" class="btn btn-default" />
+            </div>
         </div>
     </div>
+}
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Paciente.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Paciente.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Paciente.Nombre, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Paciente.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Paciente.Telefono, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Paciente.Telefono, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Especialidad, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Especialidad.Id, new SelectList(ViewBag.Especialidades, "Id", "Descripcion", Model.Especialidad.Id), new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Especialidad.Id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Medico, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Medico.Id, new SelectList(ViewBag.Medicos, "Id", "Nombre", Model.Medico.Id), new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Medico.Id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Hora, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Hora, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Agregar" class="btn btn-default" />
-        </div>
-    </div>
-</div>
+@{
+    if (ViewBag.Message != "")
+    {
+        <h3 class="text-primary mt"> @ViewBag.Message</h3>
+    }
 }
 
 <div>
@@ -95,4 +110,56 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {  
+ 
+            $("#DropClinica").change(function () {  
+                var id = $("#DropClinica").val();  
+                $.ajax({  
+                    cache: false,  
+                    type: "GET",  
+                    url: '@Url.Action("GetEspecialidad", "Cita")',  
+                    data: { "pIdClinica": id },  
+                    success: function (json, textStatus) {  
+                        $("#DropEspecialidad").empty();  
+                        $("#DropMedico").empty();
+                        for (var i = 0; i < json.length; i++) {  
+                            $("#DropEspecialidad").append($('<option></option>').val(json[i].Id).html(json[i].Descripcion));
+                        }  
+                        ActualizarEspecialidad(id);
+                    },  
+                    error: function () {  
+                        //alert("Data Not Found");  
+                    }  
+                });
+            });  
+
+            $("#DropEspecialidad").change(function () {  
+                var pIdClinica = $("#DropClinica").val();  
+                ActualizarEspecialidad(pIdClinica);
+            });  
+
+
+            function ActualizarEspecialidad(pIdClinica) {
+                var idEspecialidad = $("#DropEspecialidad").val();
+                $.ajax({  
+                    cache: false,  
+                    type: "GET",  
+                    url: '@Url.Action("GetMedicos", "Cita")',  
+                    data: { "pIdClinica": pIdClinica, "pIdEspecialidad": idEspecialidad },  
+                    success: function (json, textStatus) {  
+                        $("#DropMedico").empty();  
+                        for (var i = 0; i < json.length; i++) {  
+                            $("#DropMedico").append($('<option></option>').val(json[i].Id).html(json[i].Nombre));
+                        }  
+                    },  
+                    error: function () {  
+                        $("#DropMedico").empty();
+                    }  
+                });
+            }
+
+        });
+    </script>
 }

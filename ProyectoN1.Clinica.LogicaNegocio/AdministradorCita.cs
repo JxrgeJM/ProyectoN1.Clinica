@@ -19,5 +19,16 @@ namespace ProyectoN1.Clinica.LogicaNegocio
         {
             CitaDAL.Agregar(pCita);
         }
+
+        public static bool CitaDisponible(Cita pCita)
+        {
+            return CitaDAL.CitaDisponible(pCita);
+        }
+
+        public static bool CitaDisponibleConsultorio(Cita pCita)
+        {
+            return CitaDAL.CitaDisponibleConsultorio(pCita);
+        }
+
     }
 }

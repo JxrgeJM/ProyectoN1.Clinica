@@ -51,7 +51,6 @@ namespace ProyectoN1.Clinica.Datos
             }
         }
 
-
         public static void Agregar(Cita pCita)
         {
             SqlCommand vCmd = new SqlCommand("SP_AgregarCita", Conexion.getCnxClinica());
@@ -68,6 +67,66 @@ namespace ProyectoN1.Clinica.Datos
             {
                 Conexion.getCnxClinica().Open();
                 vCmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                Conexion.getCnxClinica().Close();
+            }
+        }
+
+        public static bool CitaDisponible(Cita pCita)
+        {
+            SqlCommand vCmd = new SqlCommand("SP_CitaDisponible", Conexion.getCnxClinica());
+            vCmd.CommandType = CommandType.StoredProcedure;
+            vCmd.Parameters.Clear();
+            vCmd.Parameters.AddWithValue("@pIdMedico", pCita.Medico.Id);
+            vCmd.Parameters.AddWithValue("@pDia", pCita.Fecha);
+            vCmd.Parameters.AddWithValue("@pHora", pCita.Hora);
+            try
+            {
+                Conexion.getCnxClinica().Open();
+                SqlDataReader vRd = vCmd.ExecuteReader();
+                int vCantidad = 0;
+                if (vRd.Read())
+                {
+                    vCantidad = vRd.GetInt32(0);
+                }
+                vRd.Close();
+                return vCantidad == 0;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                Conexion.getCnxClinica().Close();
+            }
+        }
+
+        public static bool CitaDisponibleConsultorio(Cita pCita)
+        {
+            SqlCommand vCmd = new SqlCommand("SP_CitaDisponibleConsultorio", Conexion.getCnxClinica());
+            vCmd.CommandType = CommandType.StoredProcedure;
+            vCmd.Parameters.Clear();
+            vCmd.Parameters.AddWithValue("@pIdClinica", pCita.Clinica.Id);
+            vCmd.Parameters.AddWithValue("@pDia", pCita.Fecha);
+            vCmd.Parameters.AddWithValue("@pHora", pCita.Hora);
+            try
+            {
+                Conexion.getCnxClinica().Open();
+                SqlDataReader vRd = vCmd.ExecuteReader();
+                int vCantidad = 0;
+                if (vRd.Read())
+                {
+                    vCantidad = vRd.GetInt32(0);
+                }
+                vRd.Close();
+                return vCantidad == 0;
             }
             catch (Exception)
             {

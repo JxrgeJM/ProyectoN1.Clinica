@@ -7,9 +7,17 @@
 
 <h2>Citas</h2>
 
-<p class="text-right">
-    @Html.ActionLink("Nueva", "AgregarCita", new { pIdClinica = 1 }, new { @class = "btn btn-primary" })
-</p>
+<div class="row mt mb">
+    <div class="col-sm-1">
+        <label>Clinica: </label>
+    </div>
+    <div class="col-sm-3">
+        @Html.DropDownList("DDClinicas", new SelectList(ViewBag.Clinicas, "Id", "Nombre"), null, new { @class = "form-control" })
+    </div>
+    <div class="col-sm-2">
+        @Html.ActionLink("Nueva", "AgregarCita", null, new { id = "BtnNuevaCita", @class = "btn btn-primary" })
+    </div>
+</div>
 
 <table class="table">
     <tr>
@@ -33,27 +41,45 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paciente.Identificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paciente.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Especialidad.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Medico.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hora)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paciente.Identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paciente.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialidad.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medico.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hora)
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#BtnNuevaCita').click(function () {
+                var vIdClinica = $('#DDClinicas').val();
+                var path = '@Url.Content("~/Cita/AgregarCita")?pIdClinica=' + vIdClinica;
+                $(this).attr("href", path);
+            });
+
+        });
+    </script>
+}

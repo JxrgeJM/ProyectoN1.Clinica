@@ -22,8 +22,8 @@ namespace ProyectoN1.Clinica.Datos
                 List<EquipoMedico> vDatos = new List<EquipoMedico>();
                 while (vRd.Read())
                     vDatos.Add(new EquipoMedico(vRd.GetString(0), vRd.GetString(1), vRd.GetString(2), vRd.GetString(3), vRd.GetDateTime(4), 
-                        new TipoEspecialidad(), 
-                        new Entidades.Clinica()));
+                        new TipoEspecialidad(vRd.GetInt32(5), vRd.GetString(6)),
+                        new Entidades.Clinica(vRd.GetInt32(7), vRd.GetString(8), vRd.GetString(9))));
                 vRd.Close();
                 return vDatos;
             }

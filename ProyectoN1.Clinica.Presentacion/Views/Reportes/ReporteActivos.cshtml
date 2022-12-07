@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ProyectoN1.Clinica.Entidades.EquipoMedico>
+
+@{
+    ViewBag.Title = "ReporteActivos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Informe de activos</h2>
+
+<div class="row mt mb">
+    <div class="col-sm-1">
+        <label>Clinica: </label>
+    </div>
+    <div class="col-sm-3">
+        @Html.DropDownList("DDClinicas", new SelectList(ViewBag.Clinicas, "Id", "Nombre"), null, new { @class = "form-control" })
+    </div>
+    <div class="col-sm-2">
+        @Html.ActionLink("Descargar JSON", "ActivosJSON", null, new { Id = "BtnDescargar", @class = "btn btn-primary" })
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Serie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Especialidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clinica)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Serie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialidad.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clinica.Nombre)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(function(){
+                $("#DDClinicas").change(function () {
+                    var vIdClinica = $("#DDClinicas").val();
+                    window.location.href = '@Url.Action("PacientesAtendidos", "Reportes")?pIdClinica=' + vIdClinica;
+                });
+            });
+
+            $('#BtnDescargar').click(function () {
+                var vIdClinica = $('#DDClinicas').val();
+                var path = '@Url.Content("~/Reportes/ActivosJSON")?pIdClinica=' + vIdClinica;
+                $(this).attr("href", path);
+            });
+
+        });
+    </script>
+}

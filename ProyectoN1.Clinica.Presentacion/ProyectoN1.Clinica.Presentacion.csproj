@@ -184,6 +184,7 @@
     <Content Include="Views\Reportes\Estadisticas2.cshtml" />
     <Content Include="Views\EquipoMedico\Index.cshtml" />
     <Content Include="Views\EquipoMedico\Create.cshtml" />
+    <Content Include="Views\Reportes\ReporteActivos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

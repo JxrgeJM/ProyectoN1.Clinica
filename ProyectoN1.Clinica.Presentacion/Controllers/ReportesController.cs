@@ -65,6 +65,12 @@ namespace ProyectoN1.Clinica.Presentacion.Controllers
             return View(vModelo);
         }
 
+        public ActionResult ReporteActivos(int pIdClinica = 1)
+        {
+            ViewBag.Clinicas = AdministradorClinica.Listar();
+            List<EquipoMedico> vModelo = AdministradorEquipoMedico.Listar().Where(p => p.Clinica.Id == pIdClinica).ToList();
+            return View(vModelo);
+        }
 
         #region ArchivosJSON
 
@@ -133,6 +139,16 @@ namespace ProyectoN1.Clinica.Presentacion.Controllers
             List<RepAtencionEspecialidad> vModelo = AdministradorReportes.ListarAtencionEspecialidad();
             var vJSON = JsonConvert.SerializeObject(vModelo);
             var fileName = "AtencionPorEspecialidad.json";
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(vJSON);
+            var content = new System.IO.MemoryStream(bytes);
+            return File(content, "application/json", fileName);
+        }
+
+        public FileStreamResult ActivosJSON(int pIdClinica = 1)
+        {
+            List<EquipoMedico> vModelo = AdministradorEquipoMedico.Listar().Where(p => p.Clinica.Id == pIdClinica).ToList();
+            var vJSON = JsonConvert.SerializeObject(vModelo);
+            var fileName = "Activos.json";
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(vJSON);
             var content = new System.IO.MemoryStream(bytes);
             return File(content, "application/json", fileName);
